@@ -199,7 +199,8 @@ bindsym $mod+Shift+r restart
 # bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
 # alternative
 # keybinding list in editor:
-bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
+#bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
+bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
 # Backlight control
 #bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
@@ -303,11 +304,11 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -364,7 +365,7 @@ for_window [class=TelegramDesktop] focus
 #exec_always --no-startup-id picom -b
 #
 # for custom config:
-exec_always --no-startup-id picom --config  ~/.config/picom.conf
+exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 
 #############################################
 # autostart applications/services on login: #
@@ -400,8 +401,8 @@ exec --no-startup-id /home/vs/.config/input-remapper-2/config.json
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-# exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-scale /home/vs/Pictures/Community-wallpapers/eos_wallpapers_community/krimkerre_4_endy_neon.jpg
+exec --no-startup-id sleep 2 && nitrogen --restore
+#exec --no-startup-id sleep 1 && feh --bg-scale /home/vs/Pictures/Community-wallpapers/eos_wallpapers_community/krimkerre_4_endy_neon.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -435,10 +436,10 @@ exec --no-startup-id dbus-launch /usr/bin/dunst
 
 # Autostart apps as you like
 exec --no-startup-id sleep 1 && xfce4-terminal
-exec --no-startup-id sleep 2 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
+exec --no-startup-id sleep 2 && firefox
+exec --no-startup-id sleep 3 && thunar
 
-###############
+##############
 # system tray #
 ###############
 # if you do not use dex: exec --no-startup-id dex --autostart --environment i3
@@ -451,7 +452,7 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # clipman-applet
-#exec --no-startup-id xfce4-clipman
+exec --no-startup-id xfce4-clipman
 
 ##################
 # floating rules #
@@ -519,7 +520,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 bar {
 		font pango: Noto Sans Regular 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position bottom
+	    	position top 
 	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
